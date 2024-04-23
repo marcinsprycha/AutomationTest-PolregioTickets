@@ -16,7 +16,9 @@ public class ZyrardowWarszawaTicketFindTest extends BaseTest{
         zyrardowWarszawaTicketFindPage.setEndStation();
         zyrardowWarszawaTicketFindPage.setTravelDate();
         zyrardowWarszawaTicketFindPage.setTravelHour();
-        zyrardowWarszawaTicketFindPage.submit();
-        zyrardowWarszawaTicketFindPage.checkUrl();
+        zyrardowWarszawaTicketFindPage.submitAndCheckUrl();
+        zyrardowWarszawaTicketFindPage.chooseFirstTrain();
+        zyrardowWarszawaTicketFindPage.setPassengerName();
+        zyrardowWarszawaTicketFindPage.chooseTicketOption();
     }
 }

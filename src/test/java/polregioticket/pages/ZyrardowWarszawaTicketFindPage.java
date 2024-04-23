@@ -58,6 +58,36 @@ public class ZyrardowWarszawaTicketFindPage {
     @FindBy(xpath = "//input[@class='submit']")
     private WebElement submitButton;
 
+    @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
+    private WebElement cookiesRefuseButton;
+
+    @FindBy(xpath = "//div[contains(@class,'fastest')]")
+    private WebElement firstTrainResult;
+
+    @FindBy(xpath = "//section[@style='display: block;']//button[@title='Kup bilet']")
+    private WebElement buyTicketButton;
+
+    @FindBy(xpath = "//input[@aria-label='Imię pasażera']")
+    private WebElement firstNameInput;
+
+    @FindBy(xpath = "//input[@aria-label='Nazwisko pasażera']")
+    private WebElement lastNameInput;
+
+    @FindBy(xpath = "//select[@id='ember1663']")
+    private WebElement discountSelect;
+
+    @FindBy(xpath = "//option[contains(text(),'Normalny')]")
+    private  WebElement normalOption;
+
+    @FindBy(xpath = "//button[@class='confirm_order pr-button']")
+    private WebElement furtherButton;
+
+    @FindBy(xpath = "//label[@for='season-monthly-imienny-miesięczny-tp-pwdc-ir']")
+    private WebElement monthlyNamelyTicketOption;
+
+    @FindBy(xpath = "//button[@title='Kontynuuj kupowanie biletu']")
+    private WebElement continueBuyingButton;
+
     private WebDriver driver;
 
     SoftAssert softAssert = new SoftAssert();
@@ -79,7 +109,6 @@ public class ZyrardowWarszawaTicketFindPage {
     public void waitForNotificationDiv(){
 
         driver.switchTo().frame("bhr-iframe-consent-form");
-
 //        wait.until(ExpectedConditions.visibilityOf(refuseNotificationButton));
     }
 
@@ -89,7 +118,6 @@ public class ZyrardowWarszawaTicketFindPage {
 
     public void setAcceptCookieButton(){
         acceptCookiesButton.click();
-
     }
 
     public void setStartStation(){
@@ -127,17 +155,34 @@ public class ZyrardowWarszawaTicketFindPage {
 //        wait.until(ExpectedConditions.visibilityOf(leavingHour8_00));
         Assert.assertTrue(leavingHour8_00.isDisplayed());
         leavingHour8_00.click();
-
-
     }
 
-    public void submit(){
+    public void submitAndCheckUrl(){
         submitButton.click();
-
-    }
-    public void checkUrl(){
         String stringUrl = driver.getCurrentUrl();
         Assert.assertTrue(stringUrl.contains("https://bilety.polregio.pl/wyniki"));
+        cookiesRefuseButton.click();
+    }
+
+    public void chooseFirstTrain(){
+        firstTrainResult.click();
+        buyTicketButton.click();
+    }
+
+    public void setPassengerName(){
+        firstNameInput.sendKeys("Marcin");
+        lastNameInput.sendKeys("Sprycha");
+        discountSelect.click();
+        normalOption.click();
+        furtherButton.click();
+    }
+
+    public void chooseTicketOption(){
+
+//        String string2Url = driver.getCurrentUrl();
+//        softAssert.assertTrue(string2Url.contains("https://bilety.polregio.pl/travel-options"));
+        monthlyNamelyTicketOption.click();
+        continueBuyingButton.click();
     }
 
 
